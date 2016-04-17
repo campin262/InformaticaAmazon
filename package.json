@@ -1,0 +1,24 @@
+{
+  "name": "dulces_para_mi_amor",
+  "version": "1.0.0",
+  "description": "Proyecto Dulces para mi amor",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/campin262/InformaticaAmazon.git"
+  },
+  "author": "Grupo Hardware",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/campin262/InformaticaAmazon/issues"
+  },
+  "homepage": "https://github.com/campin262/InformaticaAmazon#readme",
+  "dependencies": {
+    "amqp": "^0.2.4",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4"
+  }
+}
