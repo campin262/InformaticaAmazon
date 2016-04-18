@@ -1,7 +1,7 @@
 var amqp = require('amqp');
 
 var connection = amqp.createConnection({
-    host: '52.37.50.140'
+    host: 'localhost'
     , port: 5672
     , login: 'alozano'
     , password: 'alex506071006'
@@ -35,7 +35,7 @@ function conexion() {
                       //{ data:<buffer>,contentType:'application/octet-stream' }
                       var buffer = new Buffer(message.data);
  
-                      console.log("Enviar esta respuesta al Server",buf.toString());
+                      console.log("Enviar esta respuesta al Server",buffer.toString());
                   });
               });
           }, 5000);
