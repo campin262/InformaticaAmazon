@@ -1,5 +1,5 @@
 {
     "ambiente": "Calidad"
     , "puerto": "8080"
-    , "url": 'http://proyectoweb-5g07603u.cloudapp.net/ServiceWeb/recibirEntregaDulce/ws_servidor_recibirEntregaDulce.asmx?wsdl'
+    , "url": "http://proyectoweb-5g07603u.cloudapp.net/ServiceWeb/recibirEntregaDulce/ws_servidor_recibirEntregaDulce.asmx?wsdl"
 }
