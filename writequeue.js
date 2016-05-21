@@ -43,7 +43,7 @@ function conexion() {
 
                     servicio.llamarServicioExterno(json.id, json.codigo, json.codigo === '0' ? 'Exitoso' : 'Error');
                 } catch (err) {
-                    console.error(err.message);
+                    console.error('error al llamar servicio' + err.message);
                 }
             });
         });
