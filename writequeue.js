@@ -1,4 +1,5 @@
 var amqp = require('amqp');
+var servicio = require('./callsoap');
 
 var connection = amqp.createConnection({
     host: 'localhost'
@@ -19,26 +20,30 @@ function conexion() {
     return connection;
 }
 
- 
-(function(connection){
-          setTimeout(function() {
- 
-              //nombre de la cola que estaremos consumiendo los mensajes
-              var cola = 'QSalida';
- 
-              connection.queue(cola, {durable : true, autoDelete : false },function (cola) {
- 
-                  // comodin para capturar todos los mensajes
-                  cola.bind('#');
- 
-                  cola.subscribe(function (message) {
-                      //{ data:<buffer>,contentType:'application/octet-stream' }
-                      var buffer = new Buffer(message.data);
- 
-                      console.log("Enviar esta respuesta al Server",buffer.toString());
-                  });
-              });
-          }, 5000);
+
+(function (connection) {
+    setTimeout(function () {
+
+        //nombre de la cola que estaremos consumiendo los mensajes
+        var cola = 'QSalida';
+
+        connection.queue(cola, {
+            durable: true
+            , autoDelete: false
+        }, function (cola) {
+
+            // comodin para capturar todos los mensajes
+            cola.bind('#');
+
+            cola.subscribe(function (message) {
+                //{ data:<buffer>,contentType:'application/octet-stream' }
+                var buffer = new Buffer(message.data);
+                var json = JSON.parse(buffer.toString());
+
+                servicio.llamarServicioExterno(json.id, json.codigo, json.codigo === '0' ? 'Exitoso' : 'Error');
+            });
+        });
+    }, 5000);
 })(connection);
 
 exports.escribirCola = escribirCola;
