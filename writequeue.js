@@ -37,10 +37,14 @@ function conexion() {
 
             cola.subscribe(function (message) {
                 //{ data:<buffer>,contentType:'application/octet-stream' }
-                var buffer = new Buffer(message.data);
-                var json = JSON.parse(buffer.toString());
+                try {
+                    var buffer = new Buffer(message.data);
+                    var json = JSON.parse(buffer.toString());
 
-                servicio.llamarServicioExterno(json.id, json.codigo, json.codigo === '0' ? 'Exitoso' : 'Error');
+                    servicio.llamarServicioExterno(json.id, json.codigo, json.codigo === '0' ? 'Exitoso' : 'Error');
+                } catch (err) {
+                    console.error(err.message);
+                }
             });
         });
     }, 5000);
