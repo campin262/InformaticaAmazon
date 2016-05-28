@@ -27,31 +27,31 @@ queue.conexion().on('ready', function () {
         extended: true
     })); // support encoded bodies
 
-    app.get(configuration.context, function(req,res) {
+    app.get(configuration.context, function (req, res) {
         console.log("Recibida peticion");
         res.status(400);
         res.send('Hola soy el servicio standAlone :)');
     })
 
-    app.post(configuration.context, function(req,res) {
+    app.post(configuration.context, function (req, res) {
         res.header("Content-Type", "application/json");
         var user_id = req.body.id;
         if (user_id != undefined) {
             queue.escribirCola(user_id);
             res.status(200);
-            res.send('{"codigo": "0”, “descripcion”: “descripción: [Recibido]”}');
+            res.send('{"codigo": "0", "descripcion": "descripción: [Recibido]"}');
             console.log("recibe peticion para entregar dulce:[" + String(user_id) + "]");
         } else {
             res.status(400);
-            res.send('{"codigo": "1”, “descripcion”: "Error en datos”}');
+            res.send('{"codigo": "1", "descripcion": "Error en datos"}');
         }
     });
-    
-    if(configuration.usarHttps){
-    var server = https.createServer(options, app).listen(configuration.puertoSeguro, () => {
-        console.log("[%s] Escuchando por puerto __SEGURO__ %s", configuration.ambiente, configuration.puertoSeguro);
-    });
-    }else{
+
+    if (configuration.usarHttps) {
+        var server = https.createServer(options, app).listen(configuration.puertoSeguro, () => {
+            console.log("[%s] Escuchando por puerto __SEGURO__ %s", configuration.ambiente, configuration.puertoSeguro);
+        });
+    } else {
 
 
         var server = app.listen(configuration.puerto, function () {
