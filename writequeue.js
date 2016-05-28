@@ -46,7 +46,7 @@ function conexion() {
                 try {
                     var buffer = new Buffer(message.data);
                     var json = JSON.parse(buffer.toString());
-
+                    console.log("[out]Respuesta al Server : " + buffer.toString());
                     servicio.llamarServicioExterno(json.id, json.codigo, json.codigo === '0' ? 'Exitoso' : 'Error');
                 } catch (err) {
                     console.error('error al llamar servicio' + err.message);
