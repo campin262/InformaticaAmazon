@@ -10,9 +10,11 @@ function llamarServicioExterno(_idTransaccion, _estado, _descripcion) {
         forceSoap12Headers: true
     }, function (err, client) {
         client.confirmaEntregaDulce({
-            idTtransaccion: _idTransaccion
-            , estado: _estado
-            , descripcion: _descripcion
+            r: {
+                idTtransaccion: _idTransaccion
+                , estado: _estado
+                , descripcion: _descripcion
+            }
         }, function (err, result) {
             console.log(result);
         });
