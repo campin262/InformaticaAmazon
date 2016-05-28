@@ -41,15 +41,19 @@ function conexion() {
             // comodin para capturar todos los mensajes
             cola.bind('#');
 
-            cola.subscribe(function (message) {
+            cola.subscribe({
+                ack: true
+            },function (message) {
                 //{ data:<buffer>,contentType:'application/octet-stream' }
                 try {
                     var buffer = new Buffer(message.data);
                     var json = JSON.parse(buffer.toString());
                     console.log("[out]Respuesta al Server : " + buffer.toString());
                     servicio.llamarServicioExterno(json.id, json.codigo, json.codigo === '0' ? 'Exitoso' : 'Error');
+                    ack.acknowledge();
                 } catch (err) {
                     console.error('error al llamar servicio' + err.message);
+                    ack.acknowledge();
                 }
             });
         });
