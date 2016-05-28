@@ -1,5 +1,15 @@
 {
-    "ambiente": "Calidad"
-    , "puerto": "8080"
-    , "url": "http://proyectoweb-5g07603u.cloudapp.net/ServiceWeb/recibirEntregaDulce/ws_servidor_recibirEntregaDulce.asmx?wsdl"
+    "ambiente": "Calidad",
+    "puerto": "8080",
+    "puertoSeguro": "9943",
+    "url": "http://proyectoweb-5g07603u.cloudapp.net/ServiceWeb/recibirEntregaDulce/ws_servidor_recibirEntregaDulce.asmx?wsdl",
+    "keystore" : "serverAmazonSSL.p12",
+    "keystorePwd" : "3461283d3ce832c9",
+    "rabbitMQServer" : "52.37.50.140",
+    "rabbitMQPuerto" : 5672,
+    "rabbitMQUsuario" : "alozano",
+    "rabbitMQPwd" : "256c3e367eb7769def09cee88e",
+    "usarHttps" : false,
+    "context" : "/hw.v1.entrega"
+    
 }

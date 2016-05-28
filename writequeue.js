@@ -1,11 +1,17 @@
 var amqp = require('amqp');
+var fs = require('fs');
 var servicio = require('./callsoap');
+var cifrado = require('./cifrado');
+
+var configuration = JSON.parse(
+        fs.readFileSync('config.json')
+    );
 
 var connection = amqp.createConnection({
-    host: 'localhost'
-    , port: 5672
-    , login: 'alozano'
-    , password: 'alex506071006'
+    host: configuration.rabbitMQServer
+    , port: configuration.rabbitMQPuerto
+    , login: configuration.rabbitMQUsuario
+    , password: cifrado.decrypt(configuration.rabbitMQPwd)
 });
 
 connection.on('error', function () {
