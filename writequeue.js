@@ -43,7 +43,7 @@ function conexion() {
 
             cola.subscribe({
                 ack: true
-            },function (message) {
+            },function (message, headers, deliveryInfo, ack) {
                 //{ data:<buffer>,contentType:'application/octet-stream' }
                 try {
                     var buffer = new Buffer(message.data);
