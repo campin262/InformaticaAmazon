@@ -35,16 +35,20 @@ queue.conexion().on('ready', function () {
 
     app.post(configuration.context, function (req, res) {
         var ipOrigen = req.connection.remoteAddress;
+        console.log("------------------------ Se Recibe Peticion post ------------------------");
+        console.log("\t Ip Origen : " + ipOrigen);        
         res.header("Content-Type", "application/json");
         var user_id = req.body.id;
         if (user_id != undefined) {
+            console.log("\t solicitud  dulce id : " + String(user_id));
             queue.escribirCola(user_id);
             res.status(200);
             res.send('{"codigo": "0", "descripcion": "descripción: [Recibido]"}');
-            console.log("recibe peticion desde " + ipOrigen +" para entregar dulce:[" + String(user_id) + "]");
+            console.log("\t 200 OK : se envia respuesta codigo 0 [recibido]");
         } else {
             res.status(400);
             res.send('{"codigo": "1", "descripcion": "Error en datos"}');
+            console.log("\t 400 OK : se envia respuesta codigo 1 [Error en datos]");
         }
     });
 
