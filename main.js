@@ -21,11 +21,11 @@ queue.conexion().on('ready', function () {
         if (user_id != undefined) {
             queue.escribirCola(user_id);
             res.status(200);
-            res.send('{"codigo": "0”, “descripcion”: “descripción: [Recibido]”}');
+            res.send('{"codigo": "0”, "descripcion": "descripción: [Recibido]"}');
             console.log("recibe peticion para entregar dulce:[" + String(user_id) + "]");
         } else {
             res.status(400);
-            res.send('{"codigo": "1”, “descripcion”: "Error en datos”}');
+            res.send('{"codigo": "1”, "descripcion": "Error en datos"}');
         }
     });
 
