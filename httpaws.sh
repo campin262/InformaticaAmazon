@@ -10,6 +10,7 @@
 ### END INIT INFO
 pathHttpdaws=/home/ec2-user/dev/InformaticaAmazon
 pathLog=/var/logHttpdws/server_$(date +%Y-%m-%d).log
+node=/home/ec2-user/.nvm/versions/node/v4.4.5/bin/node
 case "$1" in
    "status") 
            cant_procesos=$(ps -fea | awk '/main.js/{print $0}' | wc -l)
@@ -39,9 +40,8 @@ case "$1" in
            cant_procesos=$(ps -fea | awk '/main.js/{print $0}' | wc -l)
            echo cantidad de procesos en ejecucion $cant_procesos | tee -a $pathLog
            if [ "$cant_procesos" = "1" ]
-           then
-              /home/ec2-user/.nvm/nvm.sh use 4
-              node $pathHttpdaws/main.js >> $pathLog  2>> $pathLog & 
+           then              
+              $node $pathHttpdaws/main.js >> $pathLog  2>> $pathLog & 
            else
               echo | tee -a $pathLog
               echo | tee -a $pathLog
