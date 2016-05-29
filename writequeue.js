@@ -2,6 +2,7 @@ var amqp = require('amqp');
 var fs = require('fs');
 var servicio = require('./callsoap');
 var cifrado = require('./cifrado');
+var log4c = require('./log4Candy');
 
 var configuration = JSON.parse(
         fs.readFileSync('config.json')
@@ -46,13 +47,15 @@ function conexion() {
             },function (message, headers, deliveryInfo, ack) {
                 //{ data:<buffer>,contentType:'application/octet-stream' }
                 try {
+                    log4c.log("==================== PROCESA MENSAJE COLA SALIDA ====================");
                     var buffer = new Buffer(message.data);
                     var json = JSON.parse(buffer.toString());
-                    console.log("[out]Respuesta al Server : " + buffer.toString());
+                    log4c.log("[out]Respuesta al Server : " + buffer.toString());
                     servicio.llamarServicioExterno(json.id, json.codigo, json.codigo === '0' ? 'Exitoso' : 'Error');
                     ack.acknowledge();
                 } catch (err) {
-                    console.error('error al llamar servicio' + err.message);
+                    log4c.log("!!!!!!!!!!!!!!!!!!!!!! ERROR AL LLAMAR EL SERVICO !!!!!!!!!!!!!!!!!!!!!!");
+                    log4c.log("\t %s",err.message);
                     ack.acknowledge();
                 }
             });

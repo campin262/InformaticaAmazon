@@ -1,7 +1,9 @@
 var soap = require('soap');
 var fs = require('fs');
+var log4c = require('./log4Candy');
 
 function llamarServicioExterno(_idTransaccion, _estado, _descripcion) {
+    log4c.log("Invocando el servicio externo _idTransaccion [%s] _estado [%s] _descripcion [%s]",_idTransaccion, _estado,_descripcion)
     var configuration = JSON.parse(
         fs.readFileSync('config.json')
     );
@@ -16,7 +18,7 @@ function llamarServicioExterno(_idTransaccion, _estado, _descripcion) {
                 , descripcion: _descripcion
             }
         }, function (err, result) {
-            console.log(result);
+            log4c.log(result);
         });
     });
 }
