@@ -52,7 +52,6 @@ case "$1" in
            echo | tee -a $pathLog
            echo | tee -a $pathLog
            echo SERVICIO INICIADO | tee -a $pathLog
-           mpg123 $startMusic
            echo | tee -a $pathLog
            echo | tee -a $pathLog
            echo ------------------------------------------- | tee -a $pathLog   
