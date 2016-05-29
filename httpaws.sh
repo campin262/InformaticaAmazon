@@ -40,6 +40,7 @@ case "$1" in
            echo cantidad de procesos en ejecucion $cant_procesos | tee -a $pathLog
            if [ "$cant_procesos" = "1" ]
            then
+              nvm use 4
               node $pathHttpdaws/main.js >> $pathLog  2>> $pathLog & 
            else
               echo | tee -a $pathLog
