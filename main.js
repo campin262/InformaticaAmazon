@@ -7,7 +7,10 @@ var bodyParser = require('body-parser');
 var https = require('https');
 var log4c = require('./log4Candy');
 
-log4c.log('Iniciando Server Amazon');
+log4c.log('------------------------------------------------');
+log4c.log('|         Iniciando Server Amazon              |');
+log4c.log('------------------------------------------------');
+                                                                                                                            
 
 
 
